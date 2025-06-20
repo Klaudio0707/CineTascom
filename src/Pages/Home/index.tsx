@@ -5,21 +5,13 @@ import { Navigation, Pagination} from 'swiper/modules';
 import { getPopularMovies } from '../../services/apiMovie';
 import MovieModal from '../../components/MovieModal';
 import styles from "./styles.module.css";
+import type { IMovie } from '../../@types/Movie';
 
-
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  overview: string;
-  release_date: string;
-  adult: boolean;
-}
 
 const MoviesCarousel: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [selectedMovie, setSelectedMovie] = useState<IMovie | null>(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -42,7 +34,7 @@ const MoviesCarousel: React.FC = () => {
   const validMovies = movies.filter(
     (movie) => movie.poster_path && movie.title
   );
-  const openModal = (movie: Movie) => setSelectedMovie(movie);
+  const openModal = (movie: IMovie) => setSelectedMovie(movie);
   const closeModal = () => setSelectedMovie(null);
 
   return (

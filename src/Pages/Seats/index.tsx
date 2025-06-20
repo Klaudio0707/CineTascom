@@ -1,89 +1,117 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../Contexts/AuthContext'; // Importa o hook personalizado
+import React, { useState, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import styles from "./styles.module.css";
+import { ReservationContext } from "../../context/ReservationContext";
+import type { ISeat } from "../../@types/Seats";
 
 const Seats: React.FC = () => {
-  const { user } = useAuth(); // Obtém as informações do usuário a partir do contexto
+  const { sessaoId } = useParams<{ sessaoId: string }>();
   const navigate = useNavigate();
-  const movie = JSON.parse(localStorage.getItem('selectedMovie') || '{}');
-  const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
-  const seatPrice = 25;
+  const { setReservation } = useContext(ReservationContext);
 
-  const handleSeatClick = (seatNumber: number) => {
+  const seats: ISeat[] = Array.from({ length: 60 }, (_, i) => ({
+    id: i,
+    row: String.fromCharCode(65 + Math.floor(i / 12)), // Fileiras: A, B, C...
+    number: (i % 12) + 1,
+    isAvailable: Math.random() > 0.2,
+  }));
+
+  const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+
+  const toggleSeat = (id: number) => {
     setSelectedSeats((prev) =>
-      prev.includes(seatNumber)
-        ? prev.filter((seat) => seat !== seatNumber)
-        : [...prev, seatNumber]
+      prev.includes(id) ? prev.filter((seatId) => seatId !== id) : [...prev, id]
     );
   };
 
-  const handlePayment = () => {
-    const total = selectedSeats.length * seatPrice;
-
-    const paymentData = {
-      user: {
-        name: user?.name || '',
-        email: user?.email || '',
-        age: user?.age || '',
-      },
+  const handleConfirm = () => {
+    const chosenSeats = seats
+      .filter((s) => selectedSeats.includes(s.id))
+      .map((s) => `${s.row}${s.number}`);
+  
+    const reservationData = {
       movie: {
-        title: movie.title,
-        release_date: movie.release_date,
+        title: `Sessão ${sessaoId}`,
+        session: "Horário da sessão",
       },
       seats: {
-        selected: selectedSeats,
-        quantity: selectedSeats.length,
+        selected: chosenSeats,
       },
-      total,
-      paid: false, // Status inicial do pagamento
+      user: {
+        name: "Usuário Exemplo",      // você pode pegar isso do contexto auth ou formulário
+        email: "user@example.com",    // idem acima
+        age: 30,                      // opcional
+      },
+      total: chosenSeats.length * 20, // ex: R$ 20 por assento
+      paid: false,
     };
-
-    // Salvar dados no localStorage para usar na página de pagamento
-    localStorage.setItem('paymentData', JSON.stringify(paymentData));
-
-    // Redirecionar para a página de pagamento
-    navigate('/payment');
+  
+    // Atualiza o contexto
+    setReservation(reservationData);
+  
+    // Salva no localStorage para o Payment.tsx conseguir ler
+    localStorage.setItem("paymentData", JSON.stringify(reservationData));
+  
+    // Navega para a tela de pagamento
+    navigate("/payment");
+  };
+  const handleClear = () => {
+    setSelectedSeats([]);
   };
 
-  return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Escolha Suas Cadeiras</h1>
-      <p>Filme: {movie.title}</p>
-      <p>Data de Lançamento: {movie.release_date}</p>
-      <p>Usuário: {user?.name}</p>
+  const availableSeats = seats.filter((s) => s.isAvailable).length;
+  const remainingSeats = availableSeats - selectedSeats.length;
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px', marginTop: '20px' }}>
-        {Array.from({ length: 25 }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => handleSeatClick(i + 1)}
-            style={{
-              padding: '10px',
-              backgroundColor: selectedSeats.includes(i + 1) ? '#4caf50' : '#ccc',
-              borderRadius: '5px',
-              cursor: 'pointer',
-            }}
-          >
-            {i + 1}
-          </button>
-        ))}
+  return (
+    <div className={styles.wrapper}>
+      <h1>Escolha seus assentos</h1>
+      <div className={styles.screen}>TELA</div>
+
+      <div className={styles.seatsGrid}>
+        {seats.map((seat) => {
+          const isSelected = selectedSeats.includes(seat.id);
+          const seatClass = seat.isAvailable
+            ? isSelected
+              ? styles.seatSelected
+              : styles.seatAvailable
+            : styles.seatOccupied;
+
+          return (
+            <button
+              key={seat.id}
+              disabled={!seat.isAvailable}
+              className={`${styles.seat} ${seatClass}`}
+              onClick={() => toggleSeat(seat.id)}
+            >
+              {seat.row}{seat.number}
+            </button>
+          );
+        })}
       </div>
 
+      <p>Assentos disponíveis: {remainingSeats}</p>
+
       <button
-        onClick={handlePayment}
-        style={{
-          marginTop: '20px',
-          padding: '10px 20px',
-          backgroundColor: '#4caf50',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }}
+        className={styles.confirmBtn}
+        onClick={handleConfirm}
         disabled={selectedSeats.length === 0}
       >
-        Ir para Pagamento
+        Confirmar ({selectedSeats.length})
       </button>
+
+      <button
+        className={styles.clearBtn}
+        onClick={handleClear}
+        disabled={selectedSeats.length === 0}
+      >
+        Limpar Seleção
+      </button>
+
+      <div className={styles.legend}>
+        <div><span className={styles.seatAvailable}></span> Disponível</div>
+        <div><span className={styles.seatSelected}></span> Selecionado</div>
+        <div><span className={styles.seatOccupied}></span> Ocupado</div>
+      </div>
     </div>
   );
 };

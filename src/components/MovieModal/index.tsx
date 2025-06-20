@@ -2,17 +2,10 @@ import React from 'react';
 import Modal from 'react-modal';
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router";
-
-interface Movie {
-  title: string;
-  poster_path: string;
-  overview: string;
-  release_date: string;
-  adult: boolean;
-}
+import type { IMovie } from "../../@types/Movie";
 
 interface MovieModalProps {
-  movie: Movie | null;
+  movie: IMovie | null;
   isOpen: boolean;
   onClose: () => void;
 }
