@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css'; // Importa os estilos do Swiper completo
-import { Navigation, Pagination} from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import { getPopularMovies } from '../../services/apiMovie';
 import MovieModal from '../../components/MovieModal';
 import styles from "./styles.module.css";
-import type { IMovie } from '../../@types/Movie';
+import type { IMovie } from '../../@types/IMovie';
 
 
 const MoviesCarousel: React.FC = () => {
@@ -27,16 +27,18 @@ const MoviesCarousel: React.FC = () => {
 
     fetchMovies();
   }, []);
-
   if (loading) {
     return <p>Carregando...</p>;
   }
   const validMovies = movies.filter(
     (movie) => movie.poster_path && movie.title
   );
-  const openModal = (movie: IMovie) => setSelectedMovie(movie);
-  const closeModal = () => setSelectedMovie(null);
 
+  const closeModal = () => setSelectedMovie(null);
+  const openModal = (movie: IMovie) => {
+    if (movie) setSelectedMovie(movie); //  dados do filme são passados.
+    console.log(movie)
+  };
   return (
     <div className={styles.movies_carousel_container}>
       <Swiper

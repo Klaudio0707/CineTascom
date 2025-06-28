@@ -1,54 +1,87 @@
-# React + TypeScript + Vite
+🎬 Cine Tascom - Interface de Cinema
+Cine Tascom  é uma aplicação web de front-end moderna  que simula a interface de um site de compra de ingressos de cinema. O projeto foi desenvolvido com foco em criar uma experiência de usuário fluida e interativa, utilizando as melhores práticas de desenvolvimento com React e TypeScript.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Funcionalidades Principais
+Listagem de Filmes: Carrossel interativo na página inicial para exibir os filmes populares, com efeitos visuais e responsividade.
 
-Currently, two official plugins are available:
+Busca em Tempo Real: Um campo de busca inteligente que consulta a API do TMDb e exibe os resultados instantaneamente em uma lista flutuante, sem a necessidade de um botão.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Detalhes e Horários: Ao selecionar um filme (seja no carrossel ou na busca), um modal exibe os horários disponíveis para a sessão.
 
-## Expanding the ESLint configuration
+Seleção de Assentos: Interface gráfica para o usuário selecionar visualmente os assentos desejados.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Autenticação Simplificada: Integração com Firebase Authentication para um login rápido com o Google, pegando apenas o nome do usuário para personalizar a experiência.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Fluxo de Compra: Um fluxo de usuário completo, desde a escolha do filme até a página de pagamento e a geração de um ingresso virtual.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Gerenciamento de Estado Avançado: Utilização de dois Contextos React distintos (AuthContext e ReservationContext) para uma clara separação de responsabilidades entre autenticação e o processo de reserva.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Persistência de Dados: Uso do localStorage para salvar o estado da autenticação e da reserva, permitindo que o usuário recarregue a página sem perder seu progresso.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Páginas Dedicadas: Inclui uma página 404 profissional e uma página de Ingresso com funcionalidade de impressão.
+
+🛠️ Tecnologias Utilizadas
+Framework: React
+
+Linguagem: TypeScript
+
+Build Tool: Vite
+
+Roteamento: React Router DOM
+
+Estilização: CSS Modules
+
+Autenticação: Firebase Authentication
+
+Carrossel: Swiper.js
+
+Cliente HTTP: Axios
+
+API de Filmes: The Movie Database (TMDb)
+
+🚀 Como Iniciar o Projeto Localmente
+Para executar este projeto na sua máquina, siga os passos abaixo.
+
+Pré-requisitos
+Node.js (versão 16 ou superior)
+
+npm ou yarn
+
+Passos para Instalação
+Clone o repositório:
+
+Bash
+
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+Instale as dependências:
+
+Bash
+
+npm install
+ou
+
+Bash
+
+yarn install
+Configure as Variáveis de Ambiente:
+Este passo é crucial. Crie um arquivo chamado .env na raiz do seu projeto e adicione as seguintes variáveis, substituindo os valores pelos seus próprios tokens e chaves:
+
+Snippet de código
+
+# Sua chave da API do The Movie Database (TMDb) v3
+VITE_API_TMDB_KEY=SUA_CHAVE_AQUI
+
+# Seu TOKEN de acesso do The Movie Database (TMDb) v4 (usado no header 'Authorization: Bearer')
+VITE_TMDB_TOKEN=SEU_TOKEN_BEARER_AQUI
+
+# Suas credenciais do projeto Firebase
+VITE_APIFIREBASE_KEY=SUA_CHAVE_DE_API_DO_FIREBASE
+Você obtém essas chaves nos painéis do TMDb e do Firebase.
+
+Execute o projeto:
+
+Bash
+
+npm run dev
+Após executar o comando, o servidor de desenvolvimento será iniciado. Abra seu navegador e acesse http://localhost:5173 (ou o endereço que aparecer no seu terminal).

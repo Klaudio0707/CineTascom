@@ -1,18 +1,18 @@
-// src/services/firebase.ts
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp, getApps } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_AUTH_DOMAIN",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_STORAGE_BUCKET",
-  messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-  appId: "SEU_APP_ID",
+  apiKey: import.meta.env.VITE_APIFIREBASE_KEY,
+  authDomain: "cinetascom.firebaseapp.com",
+  projectId: "cinetascom",
+  storageBucket: "cinetascom.firebasestorage.app",
+  messagingSenderId: "125059085567",
+  appId: "1:125059085567:web:f38bdf6e9ac441709d48ca"
 };
 
-
-const app = initializeApp(firebaseConfig);
-
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+
+

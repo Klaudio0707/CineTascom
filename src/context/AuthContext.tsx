@@ -1,36 +1,28 @@
-import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
-import { auth } from '../services/firebase';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import {
+  onAuthStateChanged,
+  signOut as firebaseSignOut,
+  signInWithPopup,
+} from "firebase/auth";
+import type { IAuthProviderProps, IUser, IAuthContextProps } from "../@types/IContexAuth";
+import { auth, provider } from "../services/firebase";
 
-interface User {
-  name: string | null;
-  email: string | null;
-  age?: string | null;
-}
+export const AuthContext = createContext<IAuthContextProps | undefined>(undefined);
 
-interface AuthContextProps {
-  user: User | null;
-  loading: boolean;
-  signOut: () => Promise<void>;
-}
-
-interface AuthProviderProps {
-  children: ReactNode; // Permite passar elementos filhos como children
-}
-
-export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
-
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
+  const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
         setUser({
-          name: firebaseUser.displayName,
-          email: firebaseUser.email,
-          age: null, // Adicione idade se necessário
+          name: firebaseUser.displayName ?? null,
         });
       } else {
         setUser(null);
@@ -41,23 +33,35 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const firebaseUser = result.user;
+
+      setUser({
+        name: firebaseUser.displayName ?? null,
+      });
+    } catch (error) {
+      console.error("Erro ao fazer login com Google:", error);
+    }
+  };
+
   const signOut = async () => {
     await firebaseSignOut(auth);
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signInWithGoogle, signOut }}>
       {!loading && children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = (): AuthContextProps => {
-    const context = useContext(AuthContext);
-    if (!context) {
-      throw new Error('useAuth deve ser usado dentro de um AuthProvider');
-    }
-    return context;
-  };
-  
+export const useAuth = (): IAuthContextProps => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth deve ser usado dentro de um AuthProvider");
+  }
+  return context;
+};

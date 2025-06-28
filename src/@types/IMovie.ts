@@ -1,4 +1,5 @@
 interface IMovie {
+    posterURL: any;
     id: number;
     title: string;
     poster_path: string;
@@ -8,6 +9,10 @@ interface IMovie {
     showtimes: string[];
 }
 
+interface IMovieModalProps {
+    movie: IMovie | null;
+    isOpen: boolean;
+    onClose: () => void;
+  }
 
-
-export type { IMovie };
+export type { IMovie, IMovieModalProps };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from "./styles.module.css";
 
 const Payment: React.FC = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Payment: React.FC = () => {
     console.log("Salvando paymentData:");
     const data = JSON.parse(localStorage.getItem('paymentData') || '{}');
     if (Object.keys(data).length === 0) {
-      navigate('/'); // Se não houver dados, volta pra Home
+      navigate('/');
     } else {
       setPaymentData(data);
     }
@@ -68,6 +69,7 @@ const Payment: React.FC = () => {
       {!paymentData.paid && (
         <button
           onClick={handlePayment}
+          className={styles.btn_Paid}
           style={{
             marginTop: '20px',
             padding: '10px 20px',

@@ -1,20 +1,36 @@
-import React, { useState, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styles from "./styles.module.css";
-import { ReservationContext } from "../../context/ReservationContext";
+import { useAuth } from "../../context/AuthContext";
+
 import type { ISeat } from "../../@types/Seats";
+import type { IMovie } from "../../@types/Movie";
 
 const Seats: React.FC = () => {
-  const { sessaoId } = useParams<{ sessaoId: string }>();
+  const location = useLocation();
+  useParams<{ sessaoId: string }>();
+  const { user } = useAuth();
+  const reservationFromState = location.state as { movie: IMovie; selectedTime: string } | undefined;
   const navigate = useNavigate();
-  const { setReservation } = useContext(ReservationContext);
+  const reservation = reservationFromState || JSON.parse(localStorage.getItem("reservation") || "null");
 
-  const seats: ISeat[] = Array.from({ length: 60 }, (_, i) => ({
-    id: i,
-    row: String.fromCharCode(65 + Math.floor(i / 12)), // Fileiras: A, B, C...
-    number: (i % 12) + 1,
-    isAvailable: Math.random() > 0.2,
-  }));
+  // Verifica se os dados necessários estão disponíveis
+  const movie = reservation?.movie;
+  const selectedTime = reservation?.selectedTime;
+
+  if (!movie || !selectedTime) {
+    console.error("Erro: Dados do filme ou horário ausentes.", reservation);
+    return <p>Erro: Dados do filme ou horário não encontrados. Retorne à página anterior.</p>;
+  }
+
+  const [seats] = useState<ISeat[]>(() =>
+    Array.from({ length: 60 }, (_, i) => ({
+      id: i,
+      row: String.fromCharCode(65 + Math.floor(i / 12)),
+      number: (i % 12) + 1,
+      isAvailable: Math.random() > 0.2,
+    }))
+  );
 
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
@@ -28,33 +44,27 @@ const Seats: React.FC = () => {
     const chosenSeats = seats
       .filter((s) => selectedSeats.includes(s.id))
       .map((s) => `${s.row}${s.number}`);
-  
+
     const reservationData = {
       movie: {
-        title: `Sessão ${sessaoId}`,
-        session: "Horário da sessão",
+        title: movie.title,
+        session: `Sessão: ${selectedTime}`,
       },
       seats: {
         selected: chosenSeats,
       },
       user: {
-        name: "Usuário Exemplo",      // você pode pegar isso do contexto auth ou formulário
-        email: "user@example.com",    // idem acima
-        age: 30,                      // opcional
+        name: user?.name || "Usuário Exemplo",
       },
-      total: chosenSeats.length * 20, // ex: R$ 20 por assento
+      total: chosenSeats.length * 20,
       paid: false,
     };
-  
-    // Atualiza o contexto
-    setReservation(reservationData);
-  
-    // Salva no localStorage para o Payment.tsx conseguir ler
+
+    // Salva no localStorage para o Payment  ler
     localStorage.setItem("paymentData", JSON.stringify(reservationData));
-  
-    // Navega para a tela de pagamento
     navigate("/payment");
   };
+
   const handleClear = () => {
     setSelectedSeats([]);
   };
@@ -65,6 +75,7 @@ const Seats: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <h1>Escolha seus assentos</h1>
+      <h3>{movie.title}</h3>
       <div className={styles.screen}>TELA</div>
 
       <div className={styles.seatsGrid}>
