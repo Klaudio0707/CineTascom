@@ -48,7 +48,7 @@ const Payment: React.FC = () => {
     saveTicket(); // Salva o ingresso depois de pagar
 
     alert('Pagamento realizado com sucesso!');
-    navigate('/ticket'); // Redireciona para a tela de ingressos
+    navigate('/ticket'); 
   };
 
   if (!paymentData) {
