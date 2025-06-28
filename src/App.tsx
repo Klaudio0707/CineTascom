@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '../src/context/AuthContext'; 
 import { ReservationProvider } from './context/ReservationContext';
 import Home from './pages/Home/index';
-import NotFound from './pages/Error/index.tsx';
-import Seats from './pages/Seats/index.tsx';
-import Ticket from './pages/Ticket/index.tsx';
-import Header from './components/Header/index.tsx';
-import Payment from './components/Payment/index.tsx';
+import NotFound from './pages/Error';
+import Seats from './pages/Seats';
+import Ticket from './pages/Ticket';
+import Header from './components/Header/';
+import Payment from './components/Payment';
 
 
 function App() {
