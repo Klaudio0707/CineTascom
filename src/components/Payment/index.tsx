@@ -60,8 +60,8 @@ const Payment: React.FC = () => {
       <h1>Resumo do Pagamento</h1>
       <p><strong>Filme:</strong> {paymentData.movie.title}</p>
       <p><strong>Usuário:</strong> {paymentData.user.name}</p>
-      <p><strong>Email:</strong> {paymentData.user.email}</p>
-      <p><strong>Idade:</strong> {paymentData.user.age}</p>
+      {/* <p><strong>Email:</strong> {paymentData.user.email}</p>
+      <p><strong>Idade:</strong> {paymentData.user.age}</p> */}
       <p><strong>Assentos:</strong> {paymentData.seats.selected.join(', ')}</p>
       <p><strong>Total:</strong> R$ {paymentData.total.toFixed(2)}</p>
       <p><strong>Status:</strong> {paymentData.paid ? 'Pago' : 'Pendente'}</p>

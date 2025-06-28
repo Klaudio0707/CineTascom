@@ -59,7 +59,7 @@ const SearchInput: React.FC = () => {
             results.length === 0 ? (
               <li className={styles.resultsItem}>Nenhum filme encontrado.</li>
             ) : (
-              // Se houver resultados, mostre-os.
+              
               results.map((movie) => (
                 <li
                   key={movie.id}

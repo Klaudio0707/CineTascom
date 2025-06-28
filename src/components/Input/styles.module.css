@@ -1,43 +1,59 @@
+/* Container principal precisa ser o "ponto de âncora" para a lista */
 .searchContainer {
-    position: flex;
-    width: 100%;
-    
-  }
-  
-  .searchInput {
-    width: 65%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .resultsList {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    border: 1px solid #ccc;
-    color: black;
-    border-radius: 4px;
-    z-index: 10;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .resultsItem {
-    padding: 8px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .resultsItem:last-child {
-    border-bottom: none;
-  }
-  
-  .resultsItem:hover {
-    background: #f5f5f5;
-  }
-  
+  position: relative; 
+  width: 100%;
+  max-width: 400px;
+}
+
+.searchInput {
+  width: 70%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  color: var(--secondary-2);
+  background-color: var(--secondary-12);
+  border: 1px solid var(--secondary-9);
+  border-radius: var(--border-radius);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary-5);
+  box-shadow: 0 0 0 3px rgba(37, 164, 161, 0.2);
+}
+
+/* Lista de resultados flutuante */
+.resultsList {
+  position: absolute;
+  top: calc(100% + 5px); /* Posicionado abaixo do input com uma pequena margem */
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: var(--secondary-12); 
+  border: 1px solid var(--secondary-9);
+  border-top: none; 
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  max-height: 350px; 
+  overflow-y: auto;
+  z-index: 1000; 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.resultsItem {
+  padding: 12px 15px;
+  cursor: pointer;
+  color: var(--secondary-3);
+  transition: background-color var(--primary-9) 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+
+.resultsItem:hover {
+  background-color: var(--primary-9);
+  color: var(--secondary-1);
+}
