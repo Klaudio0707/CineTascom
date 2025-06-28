@@ -2,12 +2,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '../src/context/AuthContext'; 
 import { ReservationProvider } from './context/ReservationContext';
+import {NotFound, Home, Seats, Ticket} from "./pages"
 import Header from './components/Header';
-import NotFound from "./pages/Error"
-import Home from './pages/Home';
-import Seats from './pages/Seats';
 import Payment from './components/Payment';
-import Ticket from './pages/Ticket';
+
 
 function App() {
   return (

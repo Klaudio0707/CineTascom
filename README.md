@@ -20,6 +20,7 @@ Persistência de Dados: Uso do localStorage para salvar o estado da autenticaç�
 
 Páginas Dedicadas: Inclui uma página 404 profissional e uma página de Ingresso com funcionalidade de impressão.
 
+
 🛠️ Tecnologias Utilizadas
 Framework: React
 
@@ -31,11 +32,17 @@ Roteamento: React Router DOM
 
 Estilização: CSS Modules
 
+Componentes de UI:
+
+Swiper.js (v11.2.8): Para a criação de carrosséis de filmes modernos e responsivos.
+
+React-Modal (v3.16.3): Para a exibição de pop-ups e modais.
+
 Autenticação: Firebase Authentication
 
 Carrossel: Swiper.js
 
-Cliente HTTP: Axios
+Cliente HTTP: Axios (v1.10.0) para realizar chamadas à API do TMDb de forma robusta.
 
 API de Filmes: The Movie Database (TMDb)
 
@@ -52,7 +59,7 @@ Clone o repositório:
 
 Bash
 
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/Klaudio0707/CineTascom
 cd seu-repositorio
 Instale as dependências:
 
@@ -70,14 +77,14 @@ Este passo é crucial. Crie um arquivo chamado .env na raiz do seu projeto e adi
 Snippet de código
 
 # Sua chave da API do The Movie Database (TMDb) v3
-VITE_API_TMDB_KEY=SUA_CHAVE_AQUI
+VITE_API_TMDB_KEY=SUA_CHAVE_AQUI - #Solicitação ao desenvolvedor#
 
 # Seu TOKEN de acesso do The Movie Database (TMDb) v4 (usado no header 'Authorization: Bearer')
-VITE_TMDB_TOKEN=SEU_TOKEN_BEARER_AQUI
+VITE_TMDB_TOKEN=SEU_TOKEN_BEARER_AQUI 
 
 # Suas credenciais do projeto Firebase
 VITE_APIFIREBASE_KEY=SUA_CHAVE_DE_API_DO_FIREBASE
-Você obtém essas chaves nos painéis do TMDb e do Firebase.
+Você obtém essas chaves nos painéis do TMDb e do Firebase.  -  #Solicitação ao desenvolvedor#
 
 Execute o projeto:
 
