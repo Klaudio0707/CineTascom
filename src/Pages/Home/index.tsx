@@ -45,7 +45,7 @@ const MoviesCarousel: React.FC = () => {
         modules={[Navigation, Pagination]}
         navigation
         pagination={{ clickable: true }}
-        spaceBetween={10}
+        spaceBetween={5}
         slidesPerView={3}
         breakpoints={{
           640: { slidesPerView: 1 },
