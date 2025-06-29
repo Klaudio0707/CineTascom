@@ -4,7 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import { ReservationProvider } from './context/ReservationContext';
 import Header from './components/Header/';
 import Payment from './components/Payment';
-import NotFound from './pages/NotFound-temp';
+import NotFound from './pages/NotFound';
 import Seats from './pages/Seats';
 import Ticket from './pages/Ticket';
 import Home from './pages/Home';
