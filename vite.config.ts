@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173, // Porta padrão ou escolha outra se necessário
-    open: true, // Abre automaticamente no navegador
-    host: true, // Permite acessar pelo IP da rede local
+    open: true, 
+    host: true,
   },
 });
