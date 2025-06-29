@@ -22,7 +22,7 @@ function App() {
           <Route path="/seats" element={<Seats />} />
           <Route path='/ticket' element={<Ticket/>} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="*" element={<NotFound/>}/>
+          <Route path="*" element={<NotFound />}/>
         </Routes>
         </ReservationProvider>
       </Router>
