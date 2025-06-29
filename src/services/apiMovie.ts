@@ -19,13 +19,13 @@ export const getPopularMovies = async () => {
   }
 };
 export const searchMovies = async (query: string): Promise<IMovie[]> => {
-  // Se a busca estiver vazia, não fazemos a chamada à API e retornamos um array vazio.
+  // Se a busca estiver vazia.
   if (!query) {
     return [];
   }
   
   try {
-    // Usamos o objeto 'params' do axios para passar os parâmetros de forma segura.
+   
     const response = await api.get('/search/movie', {
       params: {
         language: 'pt-BR',

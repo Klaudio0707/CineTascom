@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 import React from "react";
-import style from "./styles.module.css";
+import styles from "./styles.module.css";
 import Input from "../../components/Input";
 import { useAuth } from "../../context/AuthContext";
 
@@ -29,29 +30,34 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className={style.header}>
-      <nav className={style.header_nav}>
+    <header className={styles.header}>
+      {/* Adicionado um link no logo para uma melhor UX */}
+      <Link to="/" className={styles.headerLogo}>
+        CINE TASCOM
+      </Link>
+
+      <nav className={styles.headerNav}>
         <ul>
-          <li><Link to="/">Início</Link></li>
+          <li><Link to="/" >Início</Link></li>
           {user && (
-            <>
-              <li><Link to="/ticket">Meus Ingressos</Link></li>
-            </>
+            <li><Link to="/ticket">Meus Ingressos</Link></li>
           )}
         </ul>
       </nav>
 
-      <div className={style.header_actions}>
-        <Input />
+      <div className={styles.headerActions}>
+        <Input/>
         {user ? (
-          <>
-            <button onClick={handleLogout} className={style.logoutButton}>
-              <span>Olá, {user.name?.split(" ")[0]}</span>
+          <div className={styles.userMenu}>
+            <span>Olá, {user.name?.split(" ")[0]}!</span>
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Sair
             </button>
-          </>
+          </div>
         ) : (
-          <button onClick={handleLogin} className={style.loginButton}>
-            Login
+          <button onClick={handleLogin} className={styles.loginButton}>
+            Login 
+            <FcGoogle className={styles.iconGoogle} />
           </button>
         )}
       </div>

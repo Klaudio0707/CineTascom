@@ -1,59 +1,134 @@
 
+/* --- Container Principal --- */
 .searchContainer {
-  position: relative; 
+  position: relative;
   width: 100%;
+  max-width: 220px; /* Tamanho base para mobile */
+  transition: max-width 0.3s ease;
+}
+
+/* Quando o input está focado, o container cresce */
+.searchContainer:focus-within {
   max-width: 400px;
+}
+
+/* --- Wrapper do Input e Ícone --- */
+.inputWrapper {
+  position: relative;
 }
 
 .searchInput {
   width: 70%;
-  padding: 12px 15px;
-  font-size: 1rem;
+  padding: 10px 15px 10px 40px; /* Espaço à esquerda para o ícone */
+  font-size: 0.95rem;
   color: var(--secondary-2);
-  background-color: var(--secondary-12);
-  border: 1px solid var(--secondary-9);
+  background-color: var(--secondary-11);
+  border: 2px solid var(--secondary-9);
   border-radius: var(--border-radius);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.searchInput::placeholder {
+  color: var(--secondary-7);
+}
 
 .searchInput:focus {
   outline: none;
   border-color: var(--primary-5);
-  box-shadow: 0 0 0 3px rgba(37, 164, 161, 0.2);
+  box-shadow: 0 0 0 3px rgba(37, 164, 161, 0.3);
 }
 
-/* Lista de resultados flutuante */
+/* Ícone de Busca */
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--secondary-7);
+  pointer-events: none; /* Permite que o clique passe pelo ícone e atinja o input */
+}
+
+/* --- Lista de Resultados --- */
 .resultsList {
   position: absolute;
-  top: calc(100% + 5px); /* Posicionado abaixo do input com uma pequena margem */
+  top: calc(100% + 8px); /* Posicionado abaixo do input */
   left: 0;
-  right: 0;
   width: 100%;
-  background: var(--secondary-12); 
+  min-width: 300px; /* Garante que a lista seja larga o suficiente para o conteúdo */
+  background: var(--secondary-12);
   border: 1px solid var(--secondary-9);
-  border-top: none; 
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-radius: var(--border-radius);
   list-style: none;
-  padding: 5px 0;
+  padding: 5px;
   margin: 0;
-  max-height: 350px; 
+  max-height: 400px;
   overflow-y: auto;
-  z-index: 1000; 
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.2s ease-out;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Item da Lista de Resultados */
 .resultsItem {
-  padding: 12px 15px;
+  padding: 8px;
   cursor: pointer;
   color: var(--secondary-3);
-  transition: background-color var(--primary-9) 0.2s;
+  transition: background-color 0.2s ease;
   display: flex;
   align-items: center;
+  gap: 10px;
+  border-radius: 6px; 
 }
-
 
 .resultsItem:hover {
   background-color: var(--primary-9);
   color: var(--secondary-1);
+}
+
+/* Imagem do pôster no resultado */
+.resultImage {
+  width: 45px;
+  height: 58px;
+  border-radius: 4px;
+  object-fit: cover;
+  background-color: var(--secondary-11); /* Cor de fundo enquanto carrega */
+}
+.resultImage:hover{
+scale: 1.5;
+}
+/* Mensagens de 'Carregando' ou 'Nenhum resultado' */
+.resultsItemMessage {
+  padding: 12px 15px;
+  color: var(--secondary-5);
+  text-align: center;
+}
+
+/* Customização da Barra de Rolagem */
+.resultsList::-webkit-scrollbar {
+  width: 8px;
+}
+.resultsList::-webkit-scrollbar-track {
+  background: var(--secondary-11);
+  border-radius: 10px;
+}
+.resultsList::-webkit-scrollbar-thumb {
+  background: var(--primary-8);
+  border-radius: 10px;
+}
+.resultsList::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-6);
+}
+
+
+@media (min-width: 820px) {
+  .searchContainer {
+    max-width: 250px; 
+  }
 }

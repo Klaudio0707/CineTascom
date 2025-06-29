@@ -1,54 +1,134 @@
+/* --- Container Principal do Header --- */
 .header {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    gap: 15px 25px; 
+    
+    padding: 15px 20px;
+    background-color: var(--secondary-12);
+    color: var(--secondary-1);
 
-.header_logo img {
-    height: 50px;
-}
+    border-bottom: 3px solid var(--primary-6);
+    box-shadow: 0 4px 20px rgba(0, 148, 143, 0.25); /* Glow com a cor primária */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
+  }
+  
 
-.header_nav ul {
+  .headerLogo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--secondary-1);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    /* Efeito de texto que combina com o tema */
+    text-shadow: 0 0 5px var(--primary-8);
+  }
+
+  
+  /* --- Navegação Principal --- */
+  .headerNav ul {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-.header_nav li {
-    margin: 0 15px;
-}
-
-.header_nav a {
-    color: #fff;
+    gap: 25px;
+  }
+  
+  .headerNav a {
+    color: var(--secondary-4);
     text-decoration: none;
-    font-size: 16px;
-}
-
-.header_actions {
+    font-size: 1rem;
+    font-weight: 500;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent; 
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .headerNav a:hover,
+  .headerNav a:focus {
+    color: var(--primary-4);
+    border-bottom-color: var(--primary-5);
+    
+  }
+  .headerNav:hover{   transform: translateY(-2px);}
+  /* --- Ações do Header (Input e Botões) --- */
+  .headerActions {
     display: flex;
     align-items: center;
-}
-
-.header_actions input {
-    padding: 5px 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.header_actions button {
-    background-color: rgb(202, 81, 81);
-    color: #fff;
+    gap: 15px;
+  }
+  
+  /* --- Botões de Login e Logout --- */
+  .loginButton,
+  .logoutButton {
+    padding: 8px 10px;
     border: none;
-    padding: 5px 15px;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 700;
     cursor: pointer;
-}
-.header_actions button:hover {
-    background-color: var(--secondary-2);
-}
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .loginButton {
+    background-color: var(--primary-6);
+    color: var(--secondary-1);
+  }
+  
+  .loginButton:hover {
+    background-color: var(--primary-7);
+    transform: translateY(-2px);
+  }
+  
+  .userMenu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-3);
+  }
+  
+  .logoutButton {
+    background-color: var(--error-2);
+    color: var(--secondary-3);
+  }
+  
+  .logoutButton:hover {
+    background-color: var(--error-3); 
+    color: var(--secondary-1);
+  }
+  .headerLogo:hover{
+    transform: translateY(-2px);
+  }
+  .iconGoogle{
+    margin: 0px 0px 0px 5px;
+    padding: 1px 0 0 0;
+    background-color: #3eecd2;
+    border-radius: 10px;
+    font-size: 25px;
+    
+  }
+
+  @media (min-width: 820px) {
+    .header {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      padding: 10px 40px; 
+    }
+  
+    .headerLogo {
+      margin-right: 20px;
+    }
+  
+    .headerNav {
+      /* Empurra a navegação para o centro */
+      flex-grow: 1; 
+    }
+  }
+  
