@@ -1,42 +1,71 @@
 :root {
-    --primary-1: #e0f2f2;
-    --primary-2: #b2dede;
-    --primary-3: #80cac9;
-    --primary-4: #4cb4b3;
-    --primary-5: #25a4a1;
-    --primary-6: #00948f;
-    --primary-7: #018782;
-    --primary-8: #027771;
-    --primary-9: #046761;
-  
-    --secondary-1: #ffffff;
-    --secondary-2: #f7f7f7;
-    --secondary-3: #ededed;
-    --secondary-4: #dedede;
-    --secondary-5: #cccccc;
-    --secondary-6: #b3b3b3;
-    --secondary-7: #9c9c9c;
-    --secondary-8: #707070;
-    --secondary-9: #595959;
-    --secondary-10: #404040;
-    --secondary-11: #2e2e2e;
-    --secondary-12: #121212;
-    --secondary-13: #000000;
-  
-    --error-1: #ff8989;
-    --error-2: #df6161;
-  
-    --border-radius: 8px;
-    background-color: var(--secondary-13);
-  }
-  
-  * {
-    font-size: 16px;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  
+  /* 1. PALETA DE CORES PRIMÁRIAS (CIANO) */
+  --primary-1: #e0f2f2;
+  --primary-2: #b2dede;
+  --primary-3: #80cac9;
+  --primary-4: #4cb4b3;
+  --primary-5: #25a4a1;
+  --primary-6: #00948f; /* Cor principal para ações */
+  --primary-7: #018782;
+  --primary-8: #027771;
+  --primary-9: #046761;
+
+  /* 2. PALETA DE CORES SECUNDÁRIAS (ESCALA DE CINZA) */
+  --background-dark: #162215;
+  --secondary-1: #ffffff;
+  --secondary-2: #f7f7f7;
+  --secondary-3: #ededed;
+  --secondary-4: #dedede;
+  --secondary-5: #cccccc;
+  --secondary-6: #b3b3b3;
+  --secondary-7: #9c9c9c;
+  --secondary-8: #707070;
+  --secondary-9: #595959;
+  --secondary-10: #404040;
+  --secondary-11: #2e2e2e;
+  --secondary-12: #162215;
+  --secondary-13: #000000;
+
+  /* 3. CORES DE FEEDBACK */
+  --error-1: #ff8989;
+  --error-2: #df6161;
+
+  /* 4. VALORES DE LAYOUT */
+  --border-radius: 8px;
+  --font-size-base: 1rem; /* 16px por padrão */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* RESET GLOBAL E PADRÕES */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Define a base do tamanho da fonte para respeitar as configurações do usuário */
+  /* Melhora a acessibilidade */
+  font-size: 100%;
+}
+
+body {
+  /* Agora você usa a nova variável */
+  background-color: var(--secondary-12);
+  color: var(--secondary-2);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  /* Reset específico para links */
+  color: var(--primary-4);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
