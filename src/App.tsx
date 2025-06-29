@@ -8,7 +8,7 @@ import Seats from './pages/Seats';
 import Ticket from './pages/Ticket';
 import Header from './components/Header/';
 import Payment from './components/Payment';
-import React from 'react';
+
 
 
 function App() {
