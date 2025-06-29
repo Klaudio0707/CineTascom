@@ -1,6 +1,4 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/" }
-    ]
-  }
-  
+  "buildCommand": "rm -rf dist && tsc --noEmit && vite build",
+  "ignoreBuildStep": "false"
+}
