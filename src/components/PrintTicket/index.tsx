@@ -1,7 +1,7 @@
 
 import React from 'react';
-import type { ITicket } from '../../@types/ITicket';
-import styles from "./styles.module.css"
+import type {IPrintableTicketProps } from '../../@types/ITicket';
+
 
 const printStyles = `
   @media print {
@@ -70,48 +70,44 @@ const printStyles = `
   }
 `;
 
-interface PrintableTicketProps {
-  ticket: ITicket;
-}
 
 
-const PrintableTicket: React.FC<PrintableTicketProps> = ({ ticket }) => {
+const PrintableTicket: React.FC<IPrintableTicketProps> = ({ ticket }) => {
   return (
     <html>
-      <head>
-        <title>Ticket Cine Tascom - Pedido {ticket.id}</title>
-      
-        <style>{printStyles}</style>
-      </head>
-      <body>
-        <div className="ticket-container">
-          <header className="header">
-            <h1>CINE TASCOM</h1>
-            <span>Seu Ingresso Oficial</span>
-          </header>
+    <head>
+      <title>Ticket Cine Tascom - Pedido {ticket.id}</title>
 
-          <section className="section">
-            <h2>{ticket.movieTitle}</h2>
-            <p><strong>Sessão:</strong> {ticket.sessionTime}</p>
-          </section>
-          
-          <section className="section">
-            <h2>Seus Assentos</h2>
-            <p className="seats-list">{ticket.seats.join(", ")}</p>
-          </section>
+    </head>
+    <body>
+      <div className="ticket-container">
+        <header className="header">
+          <h1>CINE TASCOM</h1>
+          <span>Seu Ingresso Oficial</span>
+        </header>
 
-          <section className="section">
-            <p><strong>Nome:</strong>{ticket.status}</p>
-            <p><strong>Pedido ID:</strong> {ticket.id}</p>
-            <p><strong>Status:</strong> {ticket.status}</p>
-          </section>
+        <section className="section">
+          <h2>{ticket.movieTitle}</h2>
+          <p><strong>Sessão:</strong> {ticket.sessionTime}</p>
+        </section>
+        
+        <section className="section">
+          <h2>Seus Assentos</h2>
+          <p className="seats-list">{ticket.seats.join(", ")}</p>
+        </section>
 
-          <footer className="footer">
-            Apresente este ticket na entrada da sala. Bom filme!
-          </footer>
-        </div>
-      </body>
-    </html>
+        <section className="section">
+          {ticket.user?.name && <p><strong>Comprador:</strong> {ticket.user.name}</p>}
+          <p><strong>Pedido ID:</strong> {ticket.id}</p>
+          <p><strong>Status:</strong> {ticket.status}</p>
+        </section>
+
+        <footer className="footer">
+          Apresente este ticket na entrada da sala. Bom filme!
+        </footer>
+      </div>
+    </body>
+  </html>
   );
 };
 

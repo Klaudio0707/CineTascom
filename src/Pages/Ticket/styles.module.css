@@ -2,7 +2,7 @@
    .pageContainer {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 50px;
   }
   
   .pageTitle {
@@ -25,9 +25,15 @@
   /* --- Lista de Ingressos --- */
   .ticketsList {
     display: grid;
-    gap: 25px;
+    gap: 35px;
   }
-  
+  /* .ticketName{
+    font-size: 0.9rem;
+    color: var(--secondary-4);
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 0 0 10px 0;
+  } */
   /* Em telas maiores, mostra 2 ingressos por linha */
   @media (min-width: 992px) {
     .ticketsList {
@@ -68,12 +74,16 @@
     margin-bottom: 15px;
   }
   
-  .movieTitle {
+  .movieTitle,.ticketName {
     font-size: 1.5rem;
     color: var(--secondary-1);
     margin: 0 0 15px 0;
   }
-  
+  .ticketName {
+    font-size: 0.9rem;
+    color: var(--secondary-1);
+    margin: 0 0 15px 0;
+  }
   .details, .seats {
     font-size: 0.95rem;
     color: var(--secondary-4);

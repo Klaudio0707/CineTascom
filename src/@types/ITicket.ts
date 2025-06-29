@@ -4,6 +4,13 @@ interface ITicket  {
     sessionTime: string;
     seats: string[];
     status: string;
+    total: number;
+    user: {
+      name: string;
+      email?: string; 
+    };
   };
-
-  export type { ITicket };
+  interface IPrintableTicketProps {
+    ticket: ITicket;
+  }
+  export type { ITicket, IPrintableTicketProps };

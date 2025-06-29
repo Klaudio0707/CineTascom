@@ -45,7 +45,7 @@ const Payment: React.FC = () => {
     localStorage.setItem('paymentData', JSON.stringify(updatedPaymentData));
     setPaymentData(updatedPaymentData);
 
-    saveTicket(); // Salva o ingresso depois de pagar
+    saveTicket(); 
 
     alert('Pagamento realizado com sucesso!');
     navigate('/ticket'); 

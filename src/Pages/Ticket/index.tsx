@@ -29,17 +29,17 @@ const Ticket: React.FC = () => {
     }
   }, []);
   const handlePrint = (ticket: ITicket) => {
-    // 1. Renderiza o componente PrintableTicket para uma string HTML
+    //  Renderiza o componente PrintableTicket para uma string HTML
     const ticketHtml = ReactDOMServer.renderToString(
       <PrintableTicket ticket={ticket} />
     );
 
-    // 2. Abre a nova janela e escreve o HTML gerado
+    //  Abre a nova janela e escreve o HTML gerado
     const printWindow = window.open("", "_blank");
     if (printWindow) {
       printWindow.document.write(ticketHtml);
       
-      // 3. Lógica de impressão
+      //  Lógica de impressão
       printWindow.document.close();
       printWindow.focus();
       setTimeout(() => {
@@ -63,7 +63,9 @@ const Ticket: React.FC = () => {
             <div className={styles.ticketInfo}>
               <span className={styles.ticketId}>Pedido #{ticket.id.substring(0, 8)}</span>
               <h2 className={styles.movieTitle}>{ticket.movieTitle}</h2>
-              <h3>{ticket.name}</h3>
+              <h5 className={styles.ticketName}>Telespectador: {ticket.user.name}</h5>
+              {/* <h5 className={styles.ticketName}>Email: {ticket.user.email}</h5> */}
+      
               <div className={styles.details}>
                 <span><strong>Sessão:</strong> {ticket.sessionTime}</span>
                 <span><strong>Status:</strong> <span className={styles.status}>{ticket.status}</span></span>
