@@ -45,7 +45,7 @@ const Home: React.FC = () => {
         modules={[Navigation, Pagination]}
         navigation
         pagination={{ clickable: true }}
-        spaceBetween={5}
+        spaceBetween={10}
         slidesPerView={3}
         breakpoints={{
           640: { slidesPerView: 1 },
@@ -54,16 +54,17 @@ const Home: React.FC = () => {
         }}
       >
         {validMovies.map((movie) => (
-          <SwiperSlide key={movie.id}>
+           <SwiperSlide key={movie.id} className={styles.swiperSlide}>
             <div
-              className={styles.swiper_slide_content}
+              className={styles.swiper_slideContent}
               onClick={() => openModal(movie)}
             >
               <img
+              className={styles.posterImage}
                 src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                 alt={movie.title}
               />
-              <h3>{movie.title}</h3>
+              <h3 className={styles.titleOverlay}>{movie.title}</h3>
             </div>
           </SwiperSlide>
         ))}

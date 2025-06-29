@@ -1,131 +1,156 @@
-/* Container Principal e Título da Seção */
-.movies_carousel_container {
-    padding: 40px 20px; 
-    max-width: 1600px;
-    margin: 0 auto;
-  }
-  
-  .sectionTitle {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-3);
-    margin-bottom: 25px;
-    padding-left: 15px;
-    border-left: 4px solid var(--primary-6);
-  }
-  
-  .loadingText {
-    color: var(--secondary-4);
-    text-align: center;
-    font-size: 1.2rem;
-    padding: 50px;
-  }
-  
-  /* Estilização dos Cards de Filme (Slides) */
-  .slideContent {
-    position: relative; 
-    border-radius: var(--border-radius);
-    overflow: hidden; 
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    aspect-ratio: 2 / 3; /* Proporção clássica de pôster de cinema */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .slideContent:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-  }
-  
-  .posterImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha o card sem distorcer */
-    transition: transform 0.3s ease;
-  }
-  
-  .slideContent:hover .posterImage {
-    transform: scale(1.1); /* Efeito de zoom na imagem interna */
-  }
-  
-  /* Sobreposição do Título com Gradiente */
-  .titleOverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 40px 15px 15px 15px; 
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 10%, transparent);
-    pointer-events: none; /* Permite que o clique atravesse a sobreposição */
-  }
-  
-  .movieTitle {
-    color: var(--secondary-1);
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  }
-  
-  /* Sobreposição de Ação no Hover */
-  .hoverOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(37, 164, 161, 0.7); 
-    color: var(--secondary-1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    opacity: 0; /* Começa invisível */
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-  
-  .slideContent:hover .hoverOverlay {
-    opacity: 1; /* Aparece no hover */
-  }
-  
-  
-  /* --- Estilização dos Controles do Swiper --- */
 
+.movies_carousel_container {
+ 
+  padding: 40px 15px; 
+  max-width: 1600px;
+  margin: 0 auto;
+  overflow: hidden; 
+}
+
+.swiperSlide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px 0; 
+}
+
+.slideContent {
+  position: relative;
+  display: block;
+
+  width: 90%; 
+  max-width: 320px; 
+
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  cursor: pointer;
   
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+  /* Transições suaves para os efeitos */
+  transition: transform 0.35s ease-in-out, box-shadow 0.35s ease-in-out;
+}
+
+.posterImage {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--secondary-11); /* Cor de fundo enquanto a imagem carrega */
+}
+
+.titleOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 15px 15px 15px;
+  background: linear-gradient(to top, var(--secondary-13) 20%, transparent);
+  pointer-events: none;
+}
+ 
+.movieTitle {
+  color: var(--secondary-1);
+  font-size: 1rem; /* Tamanho de fonte base para mobile */
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 1px 1px 4px var(--secondary-13);
+  /* Limita o título a 2 linhas para evitar que fique muito grande */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* --- Efeito de Hover (Aplica-se a telas com mouse) --- */
+
+@media (hover: hover) {
+  .slideContent:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 10;
+  }
+}
+
+/* ==========================================================================
+   Estilos para Telas Maiores (Tablets e Desktops)
+   ========================================================================== */
+
+/* --- Estilos para Tablets (a partir de 768px) --- */
+@media (min-width: 768px) {
+  .movies_carousel_container {
+    padding: 40px 20px; /* Aumenta o padding lateral */
+  }
+
+  .slideContent {
+    /* Nos tablets, com 2 slides, o card pode ser um pouco maior */
+    max-width: 300px; 
+  }
+
+  .movieTitle {
+    font-size: 1.1rem; /* Aumenta um pouco a fonte do título */
+  }
+}
+
+/* --- Estilos para Desktops (a partir de 1024px) --- */
+@media (min-width: 1024px) {
+  .slideContent {
+    /* Com 3 slides, definimos um tamanho um pouco menor para caber melhor */
+    max-width: 280px; 
+  }
+}
+
+/* ==========================================================================
+   Estilos Globais para Controles do Swiper (com responsividade)
+   ========================================================================== */
+
+/* Botões de Navegação (Setas) */
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  /* ESCONDE as setas em telas pequenas (mobile-first) */
+  display: none !important;
+
+  color: var(--primary-4) !important;
+  background-color: rgba(18, 18, 18, 0.5);
+  border-radius: 50%;
+  width: 44px !important;  /* Levemente menor para um visual mais refinado */
+  height: 44px !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* MOSTRA as setas em telas de tablet e maiores */
+@media (min-width: 768px) {
   :global(.swiper-button-next),
   :global(.swiper-button-prev) {
-    color: var(--primary-4) !important; 
-    background-color: rgba(18, 18, 18, 0.5); /* Fundo semi-transparente */
-    border-radius: 50%;
-    width: 50px !important;
-    height: 50px !important;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex !important;
   }
-  :global(.swiper-button-next:hover),
-  :global(.swiper-button-prev:hover) {
-    color: var(--secondary-1) !important;
-    background-color: var(--primary-6) !important;
-  }
-  
-  :global(.swiper-button-next::after),
-  :global(.swiper-button-prev::after) {
-    font-size: 1.5rem !important; 
-    font-weight: 900;
-  }
-  
-  :global(.swiper-pagination-bullet) {
-    background: var(--secondary-6) !important; 
-    width: 10px !important;
-    height: 10px !important;
-    opacity: 0.7;
-  }
-  
-  :global(.swiper-pagination-bullet-active) {
-    background: var(--primary-5) !important; 
-    transform: scale(1.2);
-  }
+}
+
+:global(.swiper-button-next:hover),
+:global(.swiper-button-prev:hover) {
+  color: var(--secondary-1) !important;
+  background-color: var(--primary-6) !important;
+}
+
+:global(.swiper-button-next::after),
+:global(.swiper-button-prev::after) {
+  font-size: 1.2rem !important; /* Ícone da seta um pouco menor */
+  font-weight: 900;
+}
+
+/* Paginação (Bolinhas) */
+:global(.swiper-pagination-bullet) {
+  background: var(--secondary-6) !important; 
+  width: 8px !important;
+  height: 8px !important;
+  opacity: 0.7;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+ 
+:global(.swiper-pagination-bullet-active) {
+  background: var(--primary-5) !important; 
+  transform: scale(1.3);
+}
