@@ -5,7 +5,7 @@ const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIFIREBASE_KEY,
   authDomain: "cinetascom.firebaseapp.com",
   projectId: "cinetascom",
-  storageBucket: "cinetascom.firebasestorage.app",
+  storageBucket: "cinetascom.appspot.com",
   messagingSenderId: "125059085567",
   appId: "1:125059085567:web:f38bdf6e9ac441709d48ca"
 };
