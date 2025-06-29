@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css'; // Importa os estilos do Swiper completo
+import 'swiper/swiper-bundle.css'; 
 import { Navigation, Pagination } from 'swiper/modules';
 import { getPopularMovies } from '../../services/apiMovie';
 import MovieModal from '../../components/MovieModal';
