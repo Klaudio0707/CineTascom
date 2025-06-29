@@ -11,7 +11,7 @@ const firebaseConfig = {
 };
 
 
-console.log("DEBUG: Configuração do Firebase que está sendo usada:", firebaseConfig);
+
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
