@@ -1,116 +1,179 @@
 .wrapper {
-    padding: 20px;
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
-  }
   
-  .screen {
-    background: linear-gradient(to bottom, #bbb, #ddd);
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
-  
+  color: var(--secondary-2);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.wrapper h1 {
+  color: var(--primary-3);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.wrapper h3 {
+  color: var(--secondary-4);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+/* --- Tela do Cinema --- */
+.screen {
+  background: var(--secondary-11);
+  color: var(--secondary-6);
+  padding: 12px;
+  margin: 0 auto 40px auto;
+  border-radius: var(--border-radius);
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px 0px var(--primary-9);
+  border-bottom: 3px solid var(--primary-6);
+  max-width: 400px;
+}
+
+
+
+.seatsGrid {
+  display: grid;
+ 
+  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+  gap: 8px; /* Espaçamento consistente entre os assentos */
+  column-gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding: 0 10px; /* Evita que os assentos colem nas bordas em telas muito pequenas */
+}
+
+/* --- Corredor Virtual --- */
+
+@media (min-width: 768px) {
   .seatsGrid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 6px;
-    justify-content: center;
-    margin-bottom: 20px;
+    gap: 12px 10px; 
+    grid-template-columns: repeat(12, 1fr); /* Força 12 colunas em telas maiores */
   }
-  
-  /* Estilo base do assento */
-  .seat {
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    border: 1px solid #555;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    transition: transform 0.1s, background-color 0.2s;
-  }
-  
-  /* Estados visuais */
-  .seatAvailable {
-    background-color: #f0f0f0;
-  }
-  
-  .seatAvailable:hover {
-    background-color: #cce5ff;
-    transform: scale(1.1);
-  }
-  
-  .seatSelected {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .seatOccupied {
-    background-color: #d32f2f;
-    color: white;
-    cursor: not-allowed;
-  }
-  
-  /* Corredor virtual a cada 6 colunas */
+  /* Adiciona uma margem maior para simular o corredor central */
   .seatsGrid > :nth-child(6n) {
     margin-right: 20px;
   }
-  
-  .legend {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+}
+
+/* --- Estilos e Estados dos Assentos --- */
+
+.seat {
+  aspect-ratio: 1 / 1; /* Garante que o assento seja sempre um quadrado perfeito */
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--secondary-7);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Disponível */
+.seatAvailable {
+  background-color: transparent;
+}
+
+@media (hover: hover) {
+  .seatAvailable:hover {
+    background-color: var(--primary-7);
+    border-color: var(--primary-5);
+    color: var(--secondary-1);
+    transform: scale(1.1);
   }
-  
-  .legend span {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 3px;
-    margin-right: 5px;
-    border: 1px solid #888;
+}
+
+/* Selecionado */
+.seatSelected {
+  background-color: var(--primary-6); /* Cor primária para indicar seleção */
+  border-color: var(--primary-4);
+  color: var(--secondary-1);
+  transform: scale(1.1);
+}
+
+/* Ocupado */
+.seatOccupied {
+  background-color: var(--secondary-10); /* Cinza escuro para indicar indisponibilidade */
+  border-color: var(--secondary-8);
+  color: var(--secondary-7);
+  cursor: not-allowed;
+}
+
+
+/* --- Legenda --- */
+
+.legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Permite que a legenda quebre a linha em telas pequenas */
+  gap: 10px 20px;
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid var(--secondary-10);
+}
+
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--secondary-4);
+}
+
+.legend span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--border-radius);
+}
+
+/* --- Botões de Ação --- */
+
+.confirmBtn, .clearBtn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius);
+  margin: 10px 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.confirmBtn {
+  background-color: var(--primary-6);
+  color: var(--secondary-1);
+}
+
+.clearBtn {
+  /* Usando a cor de erro para uma ação de "limpar" ou "cancelar" */
+  background-color: var(--error-2);
+  color: var(--secondary-1);
+}
+
+@media (hover: hover) {
+  .confirmBtn:hover:not(:disabled) {
+    background-color: var(--primary-7);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
-  
-  .confirmBtn {
-    padding: 10px 20px;
-    background-color: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  .clearBtn:hover:not(:disabled) {
+    background-color: var(--error-1); /* Um vermelho mais claro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
-  
-  .confirmBtn:hover {
-    background-color: #005fa3;
-  }
-  
-  .confirmBtn:disabled {
-    background-color: #aaa;
-    cursor: not-allowed;
-  }
-  
-  .clearBtn {
-    padding: 8px 16px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .clearBtn:hover {
-    background-color: #c62828;
-  }
-  
+}
+
+.confirmBtn:disabled, .clearBtn:disabled {
+  background-color: var(--secondary-10);
+  color: var(--secondary-8);
+  cursor: not-allowed;
+}

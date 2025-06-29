@@ -38,7 +38,7 @@
   display: block;
   border-radius: 10px;
   cursor: pointer;
-  background-color: var(--secondary-11); /* Cor de fundo enquanto a imagem carrega */
+  background-color: var(--secondary-11);
 }
 
 .titleOverlay {
@@ -53,7 +53,7 @@
  
 .movieTitle {
   color: var(--secondary-1);
-  font-size: 1rem; /* Tamanho de fonte base para mobile */
+  font-size: 1rem; 
   font-weight: 600;
   margin: 0;
   text-shadow: 1px 1px 4px var(--secondary-13);
@@ -75,14 +75,11 @@
   }
 }
 
-/* ==========================================================================
-   Estilos para Telas Maiores (Tablets e Desktops)
-   ========================================================================== */
 
 /* --- Estilos para Tablets (a partir de 768px) --- */
 @media (min-width: 768px) {
   .movies_carousel_container {
-    padding: 40px 20px; /* Aumenta o padding lateral */
+    padding: 40px 20px; 
   }
 
   .slideContent {
@@ -91,21 +88,16 @@
   }
 
   .movieTitle {
-    font-size: 1.1rem; /* Aumenta um pouco a fonte do título */
+    font-size: 1.1rem; 
   }
 }
 
 /* --- Estilos para Desktops (a partir de 1024px) --- */
 @media (min-width: 1024px) {
   .slideContent {
-    /* Com 3 slides, definimos um tamanho um pouco menor para caber melhor */
     max-width: 280px; 
   }
 }
-
-/* ==========================================================================
-   Estilos Globais para Controles do Swiper (com responsividade)
-   ========================================================================== */
 
 /* Botões de Navegação (Setas) */
 :global(.swiper-button-next),
@@ -116,7 +108,7 @@
   color: var(--primary-4) !important;
   background-color: rgba(18, 18, 18, 0.5);
   border-radius: 50%;
-  width: 44px !important;  /* Levemente menor para um visual mais refinado */
+  width: 44px !important;  
   height: 44px !important;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
