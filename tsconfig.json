@@ -1,21 +1,7 @@
-// c:/Users/Claud/Documents/cinema/cineTascom/tsconfig.node.json
 {
-  "compilerOptions": {
-    "composite": true, // <-- Adicione ou defina esta linha como true
-    "module": "ESNext", // Ou Node16/NodeNext, dependendo do seu setup Vite
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node", // Geralmente 'Node' ou 'NodeNext' para arquivos Node.js
-    "allowSyntheticDefaultImports": true,
-    "noEmit": true, // Ou false, dependendo se este tsconfig deve gerar arquivos JS/D.TS
-    // ...outras opções do compilador
-  },
-  "include": [
-    "vite.config.ts",
-    // ...outros arquivos relacionados ao Node.js que este tsconfig deve compilar
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
   ]
 }
