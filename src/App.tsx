@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from '../src/context/AuthContext'; 
+import { AuthProvider } from './context/AuthContext'; 
 import { ReservationProvider } from './context/ReservationContext';
 import Header from './components/Header/';
 import Payment from './components/Payment';
