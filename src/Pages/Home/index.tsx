@@ -8,10 +8,12 @@ import styles from "./styles.module.css";
 import type { IMovie } from '../../@types/IMovie';
 
 
+
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedMovie, setSelectedMovie] = useState<IMovie | null>(null);
+ 
 
   useEffect(() => {
     const fetchMovies = async () => {

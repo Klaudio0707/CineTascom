@@ -4,7 +4,8 @@ import { useNavigate } from "react-router";
 import type { IMovieModalProps } from "../../@types/IMovie";
 import styles from "./styles.module.css";
 import { useReservation } from '../../context/ReservationContext';
-
+import { TbRating18Plus } from "react-icons/tb";
+import { FcOk } from "react-icons/fc";
 Modal.setAppElement('#root');
 
 const MovieModal: React.FC<IMovieModalProps> = ({ movie, isOpen, onClose }) => {
@@ -52,7 +53,7 @@ const MovieModal: React.FC<IMovieModalProps> = ({ movie, isOpen, onClose }) => {
       overlayClassName="modal-overlay"
       className={styles.modal_content}
       contentLabel="Detalhes do Filme"
-      ariaHideApp={false} 
+      ariaHideApp={false}
     >
       <button className={styles.modal_close_button} onClick={onClose}>
         Fechar
@@ -64,8 +65,13 @@ const MovieModal: React.FC<IMovieModalProps> = ({ movie, isOpen, onClose }) => {
       <p>
         <strong>Descrição:</strong> {movie.overview || "Descrição não disponível"}
       </p>
-      <p>
-        <strong>Classificação indicativa:</strong> {movie.adult ? '18+' : 'Livre'}
+      <p className={styles.detailsMovie}>
+        <span>
+          <strong>Classificação indicativa:</strong> {movie.adult ? <TbRating18Plus size={25} title='+18' /> : <FcOk size={25} title='Livre' />}
+        </span>
+        <span>
+          <strong>Popularidade: </strong>{movie.popularity}
+        </span>
       </p>
       <h3>Horários Disponíveis:</h3>
       <div className={styles.container_description}>

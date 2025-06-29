@@ -6,6 +6,7 @@ interface IMovie {
     overview: string;
     release_date: string;
     adult: boolean;
+    popularity: number;
     showtimes: string[];
 }
 

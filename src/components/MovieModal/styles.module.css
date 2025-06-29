@@ -41,6 +41,11 @@
   opacity: 0.9;
 }
 
+.detailsMovie{
+  display: flex;
+  flex-direction: column;
+  
+}
 .modal_content h2 {
   margin-bottom: 20px;
 }
