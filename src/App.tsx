@@ -4,10 +4,10 @@ import { AuthProvider } from './context/AuthContext';
 import { ReservationProvider } from './context/ReservationContext';
 import Header from './components/Header/';
 import Payment from './components/Payment';
-import NotFound from './pages/NotFound';
-import Seats from './pages/Seats';
-import Ticket from './pages/Ticket';
-import Home from './pages/Home';
+import NotFound from './Pages/NotFound';
+import Seats from './Pages/Seats';
+import Ticket from './Pages/Ticket';
+import Home from './Pages/Home';
 
 
 
