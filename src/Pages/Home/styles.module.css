@@ -1,6 +1,5 @@
 
 .movies_carousel_container {
- 
   padding: 40px 15px; 
   max-width: 1600px;
   margin: 0 auto;
@@ -25,7 +24,6 @@
   border-radius: var(--border-radius);
   overflow: hidden;
   cursor: pointer;
-  
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 
   /* Transições suaves para os efeitos */
@@ -40,13 +38,17 @@
   cursor: pointer;
   background-color: var(--secondary-11);
 }
-
+.posterImage:hover{
+scale: 1.03;
+}
 .titleOverlay {
   position: absolute;
+ 
   bottom: 0;
   left: 0;
   right: 0;
   padding: 30px 15px 15px 15px;
+  border-radius: 5px;
   background: linear-gradient(to top, var(--secondary-13) 20%, transparent);
   pointer-events: none;
 }
