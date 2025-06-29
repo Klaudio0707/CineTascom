@@ -2,7 +2,7 @@ import { initializeApp, getApps } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.VITE_APIFIREBASE_KEY,
+  apiKey: import.meta.env.VITE_APIFIREBASE_KEY,
   authDomain: "cinetascom.firebaseapp.com",
   projectId: "cinetascom",
   storageBucket: "cinetascom.firebasestorage.app",

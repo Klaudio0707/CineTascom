@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../../components/Input";
+import React from "react";
 import style from "./styles.module.css";
+import Input from "../../components/Input";
 import { useAuth } from "../../context/AuthContext";
 
 const Header: React.FC = () => {

@@ -2,12 +2,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '../src/context/AuthContext'; 
 import { ReservationProvider } from './context/ReservationContext';
-import Home from './pages/Home/index';
+import Home from './pages/Home';
 import NotFound from './pages/Error';
 import Seats from './pages/Seats';
 import Ticket from './pages/Ticket';
 import Header from './components/Header/';
 import Payment from './components/Payment';
+import React from 'react';
 
 
 function App() {

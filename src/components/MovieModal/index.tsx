@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Modal from 'react-modal';
-import styles from "./styles.module.css";
 import { useNavigate } from "react-router";
 import type { IMovieModalProps } from "../../@types/IMovie";
+import styles from "./styles.module.css";
 import { useReservation } from '../../context/ReservationContext';
 
 Modal.setAppElement('#root');

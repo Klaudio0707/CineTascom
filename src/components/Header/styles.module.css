@@ -42,10 +42,13 @@
 }
 
 .header_actions button {
-    background-color: #f00;
+    background-color: rgb(202, 81, 81);
     color: #fff;
     border: none;
     padding: 5px 15px;
     border-radius: 4px;
     cursor: pointer;
+}
+.header_actions button:hover {
+    background-color: var(--secondary-2);
 }

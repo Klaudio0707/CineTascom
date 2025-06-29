@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
+import MovieModal from "../MovieModal";
 import { searchMovies } from "../../services/apiMovie";
 import type { IMovie } from "../../@types/IMovie";
-import MovieModal from "../MovieModal";
 
 const SearchInput: React.FC = () => {
   const [query, setQuery] = useState("");
