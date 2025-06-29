@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import ReactDOMServer from 'react-dom/server'
 import styles from "./styles.module.css"
 import type {ITicket} from "../../@types/ITicket"
+import PrintableTicket from "../../components/PrintTicket";
 
 
 
@@ -26,22 +28,25 @@ const Ticket: React.FC = () => {
       setTicket(JSON.parse(data));
     }
   }, []);
-
   const handlePrint = (ticket: ITicket) => {
-    const ticketContent = `
-      ---- TICKET CINE TASCOM ----
-      Pedido ID: ${ticket.id}
-      Filme: ${ticket.movieTitle}
-      Sessão: ${ticket.sessionTime}
-      Assentos: ${ticket.seats.join(", ")}
-      Status: ${ticket.status}
-      ----------------------------
-      Apresente este ticket na entrada.
-    `;
+    // 1. Renderiza o componente PrintableTicket para uma string HTML
+    const ticketHtml = ReactDOMServer.renderToString(
+      <PrintableTicket ticket={ticket} />
+    );
+
+    // 2. Abre a nova janela e escreve o HTML gerado
     const printWindow = window.open("", "_blank");
-    printWindow?.document.write(`<pre>${ticketContent}</pre>`);
-    printWindow?.print();
-    printWindow?.close();
+    if (printWindow) {
+      printWindow.document.write(ticketHtml);
+      
+      // 3. Lógica de impressão
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+          printWindow.print();
+          printWindow.close();
+      }, 250); 
+    }
   };
 
   return (
@@ -52,12 +57,13 @@ const Ticket: React.FC = () => {
       <p className={styles.emptyMessage}>Você ainda não possui nenhum ingresso.</p>
     ) : (
       <div className={styles.ticketsList}>
-        {/* CORREÇÃO: Usando a variável de estado 'tickets' para o .map */}
+       
         {ticket.map((ticket) => (
           <div key={ticket.id} className={styles.ticketCard}>
             <div className={styles.ticketInfo}>
               <span className={styles.ticketId}>Pedido #{ticket.id.substring(0, 8)}</span>
               <h2 className={styles.movieTitle}>{ticket.movieTitle}</h2>
+              <h3>{ticket.name}</h3>
               <div className={styles.details}>
                 <span><strong>Sessão:</strong> {ticket.sessionTime}</span>
                 <span><strong>Status:</strong> <span className={styles.status}>{ticket.status}</span></span>
