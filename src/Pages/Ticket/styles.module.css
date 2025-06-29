@@ -1,0 +1,144 @@
+
+   .pageContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .pageTitle {
+    color: var(--primary-3);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    border-left: 4px solid var(--primary-6);
+  }
+  
+  .emptyMessage {
+    text-align: center;
+    color: var(--secondary-5);
+    font-size: 1.1rem;
+    padding: 50px 20px;
+    background-color: var(--secondary-11);
+    border-radius: var(--border-radius);
+  }
+  
+  /* --- Lista de Ingressos --- */
+  .ticketsList {
+    display: grid;
+    gap: 25px;
+  }
+  
+  /* Em telas maiores, mostra 2 ingressos por linha */
+  @media (min-width: 992px) {
+    .ticketsList {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  /* --- Card do Ingresso --- */
+  .ticketCard {
+    background-color: var(--secondary-11);
+    border: 1px solid var(--secondary-10);
+    border-radius: var(--border-radius);
+    display: flex;
+    /* Em mobile, o canhoto fica abaixo */
+    scale: 1.1;
+    flex-direction: column; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .ticketCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  }
+  
+  .ticketInfo {
+    padding: 20px;
+    flex-grow: 1;
+  }
+  
+  .ticketId {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--secondary-7);
+    background-color: var(--secondary-10);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .movieTitle {
+    font-size: 1.5rem;
+    color: var(--secondary-1);
+    margin: 0 0 15px 0;
+  }
+  
+  .details, .seats {
+    font-size: 0.95rem;
+    color: var(--secondary-4);
+    margin-bottom: 10px;
+  }
+  
+  .details {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .status {
+    font-weight: 700;
+    color: var(--primary-5); /* Cor de sucesso */
+  }
+  
+  /* --- Canhoto do Ingresso --- */
+  .ticketStub {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    /* Linha pontilhada separando as seções */
+    border-top: 2px dashed var(--secondary-9);
+  }
+  
+  .qrIcon {
+    width: 64px;
+    height: 64px;
+    color: var(--secondary-6);
+  }
+  
+  .printButton {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-6);
+    color: var(--secondary-1);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .printButton:hover {
+    background-color: var(--primary-7);
+    transform: scale(1.02);
+  }
+  
+  /* --- Ajustes Responsivos para o Card --- */
+  
+  /* Em telas maiores, o canhoto fica ao lado direito */
+  @media (min-width: 640px) {
+    .ticketCard {
+      flex-direction: row;
+    }
+    .ticketStub {
+      border-top: none;
+      border-left: 2px dashed var(--secondary-9);
+      min-width: 150px;
+      max-width: 180px;
+    }
+  }

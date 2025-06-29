@@ -4,42 +4,56 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: calc(100vh - 80px);
+  /* Garante que o container ocupe a altura da tela menos o cabeçalho, se houver */
+  min-height: calc(100vh - 80px); 
   padding: 20px;
-  background-color: var(--secondary-11);
+  background-color: var(--secondary-12); 
   color: var(--secondary-3);
+  overflow: hidden; /* Evita barras de rolagem causadas por fontes grandes */
 }
 
+/* --- Código de Erro "404" --- */
 .errorCode {
-  font-size: 10rem;
+  font-family: 'Montserrat', sans-serif; 
   font-weight: 900;
   color: var(--primary-5);
-  text-shadow:
-    -2px -2px 0 var(--secondary-12),
-    2px -2px 0 var(--secondary-12),
-    -2px 2px 0 var(--secondary-12),
-    2px 2px 0 var(--secondary-12),
-    4px 4px 0 var(--error-2);
   line-height: 1;
   margin-bottom: 0;
+  
+  /* Sombra com efeito "glitch" */
+  text-shadow:
+    -1px -1px 0 var(--secondary-13),
+    1px -1px 0 var(--secondary-13),
+    -1px 1px 0 var(--secondary-13),
+    1px 1px 0 var(--secondary-13),
+    3px 3px 0 var(--error-2);
+
+  /* [RESPONSIVIDADE] Tamanho da fonte base para mobile */
+  font-size: 7rem;
 }
 
+/* --- Título e Descrição --- */
 .title {
-  font-size: 2.5rem;
   font-weight: 700;
   color: var(--secondary-2);
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 16px;
+  
+  /* [RESPONSIVIDADE] Tamanho da fonte base para mobile */
+  font-size: 2rem;
 }
 
 .description {
-  font-size: 1.1rem;
   color: var(--secondary-4);
   max-width: 450px;
   margin-bottom: 40px;
   line-height: 1.6;
+  
+  /* [RESPONSIVIDADE] Tamanho da fonte base para mobile */
+  font-size: 1rem;
 }
 
+/* --- Botão/Link para a Home --- */
 .homeLink {
   display: inline-block;
   padding: 14px 32px;
@@ -50,13 +64,41 @@
   border: none;
   border-radius: var(--border-radius);
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .homeLink:hover {
   background-color: var(--primary-7);
-  transform: translateY(-2px);
-  
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(-3px); /* Efeito de elevação um pouco maior */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  /* Em telas maiores os tamanhos de fonte originais para maior impacto */
+
+  .errorCode {
+    font-size: 10rem;
+    text-shadow:
+      -2px -2px 0 var(--secondary-13),
+      2px -2px 0 var(--secondary-13),
+      -1px 2px 0 var(--secondary-13),
+      2px 2px 0 var(--secondary-13),
+      4px 4px 0 var(--error-2);
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* Em telas muito grandes, pode aumentar ainda mais para um efeito dramático */
+  .errorCode {
+    font-size: 12rem;
+  }
 }
