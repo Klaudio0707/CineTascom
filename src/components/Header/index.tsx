@@ -46,9 +46,9 @@ const Header: React.FC = () => {
       </nav>
 
       <div className={styles.headerActions}>
-        <Input/>
         {user ? (
           <div className={styles.userMenu}>
+            <Input/>
             <span>Olá, {user.name?.split(" ")[0]}!</span>
             <button onClick={handleLogout} className={styles.logoutButton}>
               Sair
