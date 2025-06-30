@@ -4,7 +4,7 @@ import type { IUser } from "./IUser";
   interface IAuthContextProps {
     user: IUser | null;
     loading: boolean;
-    signInWithGoogle: () => Promise<void>;
+    signIn: () => Promise<void>
     signOut: () => Promise<void>;
   }
   

@@ -33,7 +33,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const signInWithGoogle = async () => {
+  const signIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const firebaseUser = result.user;
@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signInWithGoogle, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
       {!loading && children}
     </AuthContext.Provider>
   );

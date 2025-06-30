@@ -1,9 +1,11 @@
+
 import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import { useNavigate } from "react-router";
 import type { IMovieModalProps } from "../../@types/IMovie";
 import styles from "./styles.module.css";
 import { useReservation } from '../../context/ReservationContext';
+import { useAuth } from '../../context/AuthContext';
 import { TbRating18Plus } from "react-icons/tb";
 import { FcOk } from "react-icons/fc";
 Modal.setAppElement('#root');
@@ -11,6 +13,7 @@ Modal.setAppElement('#root');
 const MovieModal: React.FC<IMovieModalProps> = ({ movie, isOpen, onClose }) => {
   const navigate = useNavigate();
   const { setSelectedMovie, setSelectedShowtime } = useReservation();
+  const { user, signIn } = useAuth(); 
 
   useEffect(() => {
     if (!isOpen) {
@@ -24,7 +27,7 @@ const MovieModal: React.FC<IMovieModalProps> = ({ movie, isOpen, onClose }) => {
 
   const handleBuyTicket = (time: string) => {
 
-    if (movie) {
+    if (user && movie) {
       //armazenando dados com otime e movie
       setSelectedMovie(movie);
       setSelectedShowtime(time);
@@ -37,6 +40,9 @@ const MovieModal: React.FC<IMovieModalProps> = ({ movie, isOpen, onClose }) => {
 
       localStorage.setItem('reservation', JSON.stringify(reservationData));
       navigate('/seats', { state: reservationData });
+    }else{
+        alert('Por favor, faça login para escolher um horário e continuar a compra.');
+           signIn();
     }
   };
   const handleWatchTrailer = () => {
