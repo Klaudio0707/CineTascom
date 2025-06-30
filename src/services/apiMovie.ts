@@ -26,7 +26,7 @@ export const searchMovies = async (query: string): Promise<IMovie[]> => {
   
   try {
    
-    const response = await api.get('/search/movie', {
+    const response = await api.get('/movie/popular?language=pt-BR&page=1', {
       params: {
         language: 'pt-BR',
         query: query,
