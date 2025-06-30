@@ -3,7 +3,8 @@ import styles from "./styles.module.css";
 import MovieModal from "../MovieModal";
 import { searchMovies } from "../../services/apiMovie";
 import type { IMovie } from "../../@types/IMovie";
-
+// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const SearchIcon = () => (
   <svg aria-hidden="true" className={styles.searchIcon} viewBox="0 0 20 20" fill="currentColor">
@@ -18,7 +19,7 @@ const SearchInput: React.FC = () => {
   const [modalMovie, setModalMovie] = useState<IMovie | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
+    const navigate = useNavigate();
   //  Debouncing
   useEffect(() => {
     if (query.trim() === "") {
@@ -47,6 +48,7 @@ const SearchInput: React.FC = () => {
   }, []);
 
   const handleSelectMovie = (movie: IMovie) => {
+    navigate('/');
     setModalMovie(movie);
     setQuery("");
     setResults([]);

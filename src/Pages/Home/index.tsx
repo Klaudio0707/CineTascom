@@ -39,7 +39,7 @@ const Home: React.FC = () => {
   const closeModal = () => setSelectedMovie(null);
   const openModal = (movie: IMovie) => {
     if (movie) setSelectedMovie(movie); //  dados do filme são passados.
-    console.log(movie)
+    // console.log(movie)
   };
   return (
     <div className={styles.movies_carousel_container}>
