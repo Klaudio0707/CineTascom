@@ -6,7 +6,7 @@ import Input from "../../components/Input";
 import { useAuth } from "../../context/AuthContext";
 
 const Header: React.FC = () => {
-  const { user, signInWithGoogle, signOut } = useAuth();
+  const { user, signIn, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
