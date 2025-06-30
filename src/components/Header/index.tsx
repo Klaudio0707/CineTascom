@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      await signInWithGoogle();
+      await signIn(); // correçao do nome da funçao login
       navigate("/");
     } catch (error) {
       console.error("Erro ao fazer login:", error);
