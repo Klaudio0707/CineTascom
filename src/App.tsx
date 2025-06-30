@@ -8,6 +8,7 @@ import NotFound from './Pages/NotFound';
 import Seats from './Pages/Seats';
 import Ticket from './Pages/Ticket';
 import Home from './Pages/Home';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 
@@ -19,9 +20,18 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/seats" element={<Seats />} />
-          <Route path='/ticket' element={<Ticket/>} />
-          <Route path="/payment" element={<Payment />} />
+          <Route 
+            path="/seats" 
+            element={<ProtectedRoute><Seats /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/payment" 
+            element={<ProtectedRoute><Payment /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/ticket" 
+            element={<ProtectedRoute><Ticket /></ProtectedRoute>} 
+          />
           <Route path="*" element={<NotFound />}/>
         </Routes>
         </ReservationProvider>
