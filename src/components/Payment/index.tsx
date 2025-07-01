@@ -16,7 +16,6 @@ const Payment: React.FC = () => {
       navigate('/');
       return;
     }
-    
     try {
       const data: IPaymentData = JSON.parse(dataString);
       setPaymentData(data);
@@ -52,11 +51,8 @@ const Payment: React.FC = () => {
     setPaymentData(updatedPaymentData);
 
     saveTicket(); 
-    alert('Pagamento realizado com sucesso!');
     navigate('/ticket'); 
   };
-
-  // ESTA É A GUARDA PRINCIPAL
   if (!paymentData) {
     return <p>Carregando resumo do pagamento...</p>;
   }
