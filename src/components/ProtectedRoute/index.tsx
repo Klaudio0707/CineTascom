@@ -13,7 +13,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
   //Após a verificação, se não houver 'user', redirecionamos para a home.
   if (!user) {
-    // O componente <Navigate> do React Router faz o redirecionamento.
     // 'replace' impede que o usuário use o botão "voltar" do navegador para
     return <Navigate to="/" replace />;
   }

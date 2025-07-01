@@ -1,9 +1,84 @@
-.btn_paid{
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* src/pages/Payment/styles.module.css */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  max-width: 600px;
+  margin: 3rem auto; /* Aumenta a margem do topo */
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.summaryCard {
+  background-color: var(--surface-color);
+  width: 100%;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: left;
+  border-top: 4px solid var(--primary-color);
+}
+
+.summaryCard p {
+  font-size: 1.1rem;
+  color: var(--text-color-secondary);
+  margin: 0 0 1rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Remove a borda do último item para um visual mais limpo */
+.summaryCard p:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.summaryCard strong {
+  color: var(--text-color-primary);
+}
+
+.total {
+  font-size: 1.8rem !important; /* !important garante que o estilo se sobreponha */
+  font-weight: bold;
+  margin-top: 1.5rem !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid #ddd !important;
+}
+
+.payButton {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary-6);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.payButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-9);
+}
+
+.paidMessage {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #28a745; /* Cor de sucesso */
+  margin-top: 2rem;
+  text-align: center;
 }

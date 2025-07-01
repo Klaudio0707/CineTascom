@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      await signIn(); // correçao do nome da funçao login
+      await signIn(); 
       navigate("/");
     } catch (error) {
       console.error("Erro ao fazer login:", error);
@@ -31,7 +31,6 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      {/* Adicionado um link no logo para uma melhor UX */}
       <Link to="/" className={styles.headerLogo}>
         CINE TASCOM
       </Link>

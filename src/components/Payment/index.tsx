@@ -1,85 +1,100 @@
+// src/pages/Payment/index.tsx
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from "./styles.module.css";
+import { type IPaymentData } from '../../@types/IPayment';
 
 const Payment: React.FC = () => {
   const navigate = useNavigate();
-  const [paymentData, setPaymentData] = useState<any>(null);
+  const [paymentData, setPaymentData] = useState<IPaymentData | null>(null);
 
   useEffect(() => {
-    console.log("Salvando paymentData:");
-    const data = JSON.parse(localStorage.getItem('paymentData') || '{}');
-    if (Object.keys(data).length === 0) {
+    const dataString = localStorage.getItem('paymentData');
+    if (!dataString) {
+      console.error("Nenhum dado de pagamento encontrado. Redirecionando...");
       navigate('/');
-    } else {
+      return;
+    }
+    
+    try {
+      const data: IPaymentData = JSON.parse(dataString);
       setPaymentData(data);
+    } catch (error) {
+      console.error("Erro ao parsear dados do pagamento:", error);
+      navigate('/');
     }
   }, [navigate]);
 
   const saveTicket = () => {
-    console.log("Dados do pagamento ao salvar o ticket:", paymentData);
+    // Como temos a guarda abaixo, podemos assumir que paymentData existe aqui.
+    // Adicionamos '!' para dizer ao TypeScript: "Eu sei o que estou fazendo, confie em mim".
     const ingressos = JSON.parse(localStorage.getItem("ingressos") || "[]");
-
     const newTicket = {
       id: Date.now().toString(),
-      movieTitle: paymentData.movie.title,
-      sessionTime: paymentData.movie.session,
-      seats: paymentData.seats.selected,
+      movieTitle: paymentData!.movie.title,
+      sessionTime: paymentData!.movie.session,
+      seats: paymentData!.seats.selected,
       status: "Pago",
       user: {
-        name: paymentData.user.name,
-        email: paymentData.user.email,
+        name: paymentData!.user.name,
+        email: paymentData!.user.email,
       },
-      total: paymentData.total,
+      total: paymentData!.total,
     };
-
     localStorage.setItem("ingressos", JSON.stringify([...ingressos, newTicket]));
   };
 
   const handlePayment = () => {
-    const updatedPaymentData = {
-      ...paymentData,
-      paid: true,
-    };
+    if (!paymentData) return;
 
+    const updatedPaymentData: IPaymentData = { ...paymentData, paid: true };
     localStorage.setItem('paymentData', JSON.stringify(updatedPaymentData));
     setPaymentData(updatedPaymentData);
 
     saveTicket(); 
-
     alert('Pagamento realizado com sucesso!');
     navigate('/ticket'); 
   };
 
+  // ESTA É A GUARDA PRINCIPAL
   if (!paymentData) {
-    return <p>Carregando...</p>;
+    return <p>Carregando resumo do pagamento...</p>;
   }
 
+  // A partir daqui, o TypeScript sabe que `paymentData` não é nulo.
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Resumo do Pagamento</h1>
-      <p><strong>Filme:</strong> {paymentData.movie.title}</p>
-      <p><strong>Usuário:</strong> {paymentData.user.name}</p>
-      {/* <p><strong>Email:</strong> {paymentData.user.email}</p>
-      <p><strong>Idade:</strong> {paymentData.user.age}</p> */}
-      <p><strong>Assentos:</strong> {paymentData.seats.selected.join(', ')}</p>
-      <p><strong>Total:</strong> R$ {paymentData.total.toFixed(2)}</p>
-      <p><strong>Status:</strong> {paymentData.paid ? 'Pago' : 'Pendente'}</p>
+     <div className={styles.wrapper}>
+      <h1 className={styles.title}>Resumo da Compra</h1>
 
-      {!paymentData.paid && (
-        <button
-          onClick={handlePayment}
-          className={styles.btn_Paid}
-          style={{
-            marginTop: '20px',
-            padding: '10px 20px',
-            backgroundColor: '#4caf50',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-        >
+      <div className={styles.summaryCard}>
+        <p>
+          <strong>Filme:</strong> 
+          <span>{paymentData.movie.title}</span>
+        </p>
+        <p>
+          <strong>Sessão:</strong> 
+          <span>{paymentData.movie.session}</span>
+        </p>
+        <p>
+          <strong>Usuário:</strong> 
+          <span>{paymentData.user.name}</span>
+        </p>
+        <p>
+          <strong>Assentos:</strong>
+          <span>{paymentData.seats.selected.join(', ')}</span>
+        </p>
+        <p className={styles.total}>
+          <strong>Total:</strong> 
+          <span>R$ {paymentData.total.toFixed(2)}</span>
+        </p>
+      </div>
+
+      {/* Exibe o status do pagamento */}
+      {paymentData.paid ? (
+        <p className={styles.paidMessage}>Pagamento Confirmado!</p>
+      ) : (
+        <button onClick={handlePayment} className={styles.payButton}>
           Pagar Agora
         </button>
       )}

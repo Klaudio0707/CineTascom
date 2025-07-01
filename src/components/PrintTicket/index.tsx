@@ -98,7 +98,9 @@ const PrintableTicket: React.FC<IPrintableTicketProps> = ({ ticket }) => {
 
         <section className="section">
           {ticket.user?.name && <p><strong>Comprador:</strong> {ticket.user.name}</p>}
+           {ticket.user?.email && <p><strong>Emnail</strong> {ticket.user.email}</p>}
           <p><strong>Pedido ID:</strong> {ticket.id}</p>
+          <p><strong>Valor total: </strong> {ticket.total}</p>
           <p><strong>Status:</strong> {ticket.status}</p>
         </section>
 
