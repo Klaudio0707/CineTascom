@@ -38,9 +38,11 @@ const Header: React.FC = () => {
 
       <nav className={styles.headerNav}>
         <ul>
-          <li><Link to="/" >Início</Link></li>
           {user && (
-            <li><Link to="/ticket">Meus Ingressos</Link></li>
+          <>
+          <li><Link to="/">Início</Link></li>
+          <li><Link to="/ticket">Meus Ingressos</Link></li>
+          </>
           )}
         </ul>
       </nav>
