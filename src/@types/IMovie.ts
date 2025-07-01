@@ -1,5 +1,5 @@
 interface IMovie {
-    posterURL: any;
+    posterURL: string;
     id: number;
     title: string;
     poster_path: string;

@@ -4,8 +4,6 @@ import styles from "./styles.module.css"
 import type {ITicket} from "../../@types/ITicket"
 import PrintableTicket from "../../components/PrintTicket";
 
-
-
 const QrCodeIcon = () => (
 
   <svg className={styles.qrIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -39,7 +37,7 @@ const Ticket: React.FC = () => {
     if (printWindow) {
       printWindow.document.write(ticketHtml);
       
-      //  Lógica de impressão
+
       printWindow.document.close();
       printWindow.focus();
       setTimeout(() => {

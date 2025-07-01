@@ -27,14 +27,7 @@
     display: grid;
     gap: 35px;
   }
-  /* .ticketName{
-    font-size: 0.9rem;
-    color: var(--secondary-4);
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin: 0 0 10px 0;
-  } */
-  /* Em telas maiores, mostra 2 ingressos por linha */
+ 
   @media (min-width: 992px) {
     .ticketsList {
       grid-template-columns: 1fr 1fr;
@@ -110,7 +103,6 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    /* Linha pontilhada separando as seções */
     border-top: 2px dashed var(--secondary-9);
   }
   
@@ -138,8 +130,7 @@
     transform: scale(1.02);
   }
   
-  /* --- Ajustes Responsivos para o Card --- */
-  
+ 
   /* Em telas maiores, o canhoto fica ao lado direito */
   @media (min-width: 640px) {
     .ticketCard {

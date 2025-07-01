@@ -3,8 +3,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styles from "./styles.module.css";
 import { useAuth } from "../../context/AuthContext";
 
-import type { ISeat } from "../../@types/Seats";
-import type { IMovie } from "../../@types/Movie";
+import type { ISeat } from "../../@types/ISeats";
+import type { IMovie } from "../../@types/IMovie";
 
 const Seats: React.FC = () => {
   const location = useLocation();

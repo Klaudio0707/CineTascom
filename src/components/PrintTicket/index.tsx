@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type {IPrintableTicketProps } from '../../@types/ITicket';
 

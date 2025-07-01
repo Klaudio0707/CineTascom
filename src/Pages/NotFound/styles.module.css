@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  /* Garante que o container ocupe a altura da tela menos o cabeçalho, se houver */
+
   min-height: calc(100vh - 80px); 
   padding: 20px;
   background-color: var(--secondary-12); 
@@ -28,7 +28,7 @@
     1px 1px 0 var(--secondary-13),
     3px 3px 0 var(--error-2);
 
-  /* [RESPONSIVIDADE] Tamanho da fonte base para mobile */
+
   font-size: 7rem;
 }
 
@@ -39,7 +39,7 @@
   margin-top: 10px;
   margin-bottom: 16px;
   
-  /* [RESPONSIVIDADE] Tamanho da fonte base para mobile */
+
   font-size: 2rem;
 }
 
@@ -49,7 +49,7 @@
   margin-bottom: 40px;
   line-height: 1.6;
   
-  /* [RESPONSIVIDADE] Tamanho da fonte base para mobile */
+
   font-size: 1rem;
 }
 
@@ -70,12 +70,12 @@
 
 .homeLink:hover {
   background-color: var(--primary-7);
-  transform: translateY(-3px); /* Efeito de elevação um pouco maior */
+  transform: translateY(-3px); 
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 768px) {
-  /* Em telas maiores os tamanhos de fonte originais para maior impacto */
+
 
   .errorCode {
     font-size: 10rem;
@@ -97,7 +97,7 @@
 }
 
 @media (min-width: 1200px) {
-  /* Em telas muito grandes, pode aumentar ainda mais para um efeito dramático */
+
   .errorCode {
     font-size: 12rem;
   }
