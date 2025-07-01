@@ -1,4 +1,4 @@
-// src/pages/Payment/index.tsx
+
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -27,8 +27,7 @@ const Payment: React.FC = () => {
   }, [navigate]);
 
   const saveTicket = () => {
-    // Como temos a guarda abaixo, podemos assumir que paymentData existe aqui.
-    // Adicionamos '!' para dizer ao TypeScript: "Eu sei o que estou fazendo, confie em mim".
+
     const ingressos = JSON.parse(localStorage.getItem("ingressos") || "[]");
     const newTicket = {
       id: Date.now().toString(),
@@ -62,7 +61,7 @@ const Payment: React.FC = () => {
     return <p>Carregando resumo do pagamento...</p>;
   }
 
-  // A partir daqui, o TypeScript sabe que `paymentData` não é nulo.
+
   return (
      <div className={styles.wrapper}>
       <h1 className={styles.title}>Resumo da Compra</h1>
@@ -90,7 +89,6 @@ const Payment: React.FC = () => {
         </p>
       </div>
 
-      {/* Exibe o status do pagamento */}
       {paymentData.paid ? (
         <p className={styles.paidMessage}>Pagamento Confirmado!</p>
       ) : (
