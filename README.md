@@ -1,5 +1,12 @@
+
+<img width="1872" height="789" alt="Captura de tela 2025-07-19 211445" src="https://github.com/user-attachments/assets/13ed2ff2-02cf-41c3-9926-57941c40d20d" />
+
+
+
 🎬 Cine Tascom - Interface de Cinema
 Cine Tascom  é uma aplicação web de front-end moderna  que simula a interface de um site de compra de ingressos de cinema. O projeto foi desenvolvido com foco em criar uma experiência de usuário fluida e interativa, utilizando as melhores práticas de desenvolvimento com React e TypeScript.
+
+[URL_DEPLOY: https://cine-tascom.vercel.app/](https://cine-tascom.vercel.app/)
 
 ✨ Funcionalidades Principais
 Listagem de Filmes: Carrossel interativo na página inicial para exibir os filmes populares, com efeitos visuais e responsividade.
